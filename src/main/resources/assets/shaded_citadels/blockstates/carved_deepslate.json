@@ -1,0 +1,136 @@
+{
+  "variants": {
+    "facing=north,roll=north": {
+      "model": "shaded_citadels:block/carved_deepslate_up",
+      "uvlock": true
+    },
+    "facing=north,roll=south": {
+      "model": "shaded_citadels:block/carved_deepslate_up_s",
+      "uvlock": true
+    },
+    "facing=north,roll=east": {
+      "model": "shaded_citadels:block/carved_deepslate_side_up_e",
+      "uvlock": true
+    },
+    "facing=north,roll=west": {
+      "model": "shaded_citadels:block/carved_deepslate_side_up_w",
+      "uvlock": true
+    },
+
+
+    "facing=south,roll=north": {
+      "model": "shaded_citadels:block/carved_deepslate_up",
+      "y": 180,
+      "uvlock": true
+    },
+    "facing=south,roll=south": {
+      "model": "shaded_citadels:block/carved_deepslate_up_s",
+      "y": 180,
+      "uvlock": true
+    },
+    "facing=south,roll=east": {
+      "model": "shaded_citadels:block/carved_deepslate_side_down_e",
+      "y": 180,
+      "uvlock": true
+    },
+    "facing=south,roll=west": {
+      "model": "shaded_citadels:block/carved_deepslate_side_down_w",
+      "y": 180,
+      "uvlock": true
+    },
+
+
+    "facing=east,roll=north": {
+      "model": "shaded_citadels:block/carved_deepslate_side_up",
+      "y": 90,
+      "uvlock": true
+    },
+    "facing=east,roll=south": {
+      "model": "shaded_citadels:block/carved_deepslate_side_up_s",
+      "y": 90,
+      "uvlock": true
+    },
+    "facing=east,roll=east": {
+      "model": "shaded_citadels:block/carved_deepslate_side_down_e_flipped",
+      "y": 90,
+      "uvlock": true
+    },
+    "facing=east,roll=west": {
+      "model": "shaded_citadels:block/carved_deepslate_side_up_w",
+      "y": 90,
+      "uvlock": true
+    },
+
+
+    "facing=west,roll=north": {
+      "model": "shaded_citadels:block/carved_deepslate_side_up",
+      "y": 270,
+      "uvlock": true
+    },
+    "facing=west,roll=south": {
+      "model": "shaded_citadels:block/carved_deepslate_side_up_s",
+      "y": 270,
+      "uvlock": true
+    },
+    "facing=west,roll=east": {
+      "model": "shaded_citadels:block/carved_deepslate_side_down_e",
+      "y": 270,
+      "uvlock": true
+    },
+    "facing=west,roll=west": {
+      "model": "shaded_citadels:block/carved_deepslate_side_up_w_flipped",
+      "y": 270,
+      "uvlock": true
+    },
+
+
+    "facing=up,roll=north": {
+      "model": "shaded_citadels:block/carved_deepslate_down",
+      "x": 270,
+      "uvlock": true
+    },
+    "facing=up,roll=south": {
+      "model": "shaded_citadels:block/carved_deepslate_down",
+      "y": 180,
+      "x": 270,
+      "uvlock": true
+    },
+    "facing=up,roll=east": {
+      "model": "shaded_citadels:block/carved_deepslate_down",
+      "y": 90,
+      "x": 270,
+      "uvlock": true
+    },
+    "facing=up,roll=west": {
+      "model": "shaded_citadels:block/carved_deepslate_down",
+      "y": 270,
+      "x": 270,
+      "uvlock": true
+    },
+
+
+    "facing=down,roll=north": {
+      "model": "shaded_citadels:block/carved_deepslate_up",
+      "x": 90,
+      "uvlock": true
+    },
+    "facing=down,roll=south": {
+      "model": "shaded_citadels:block/carved_deepslate_up",
+      "x": 90,
+      "y": 180,
+      "uvlock": true
+    },
+    "facing=down,roll=east": {
+      "model": "shaded_citadels:block/carved_deepslate_up",
+      "x": 90,
+      "y": 90,
+      "uvlock": true
+    },
+    "facing=down,roll=west": {
+      "model": "shaded_citadels:block/carved_deepslate_up",
+      "x": 90,
+      "y": 270,
+      "uvlock": true
+    }
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "parent": "minecraft:block/cube",
+  "textures": {
+    "north": "shaded_citadels:block/carved_deepslate_front",
+    "south": "shaded_citadels:block/carved_deepslate_back",
+    "east": "shaded_citadels:block/carved_deepslate_bottom_sideways",
+    "west": "shaded_citadels:block/carved_deepslate_top",
+    "up": "shaded_citadels:block/carved_deepslate_west_down",
+    "down": "shaded_citadels:block/carved_deepslate_east_down",
+    "particle": "shaded_citadels:block/carved_deepslate_front"
+  }
+}
