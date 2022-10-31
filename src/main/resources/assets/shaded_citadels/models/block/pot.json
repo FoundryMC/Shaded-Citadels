@@ -1,0 +1,78 @@
+{
+    "parent": "block/block",
+    "render_type": "cutout",
+    "textures": {
+        "stone_pot": "shaded_citadels:block/stone_pot",
+        "stone_pot_top": "shaded_citadels:block/stone_pot_top",
+        "stone_pot_outer_top": "shaded_citadels:block/stone_pot_outer_top",
+        "stone_pot_inner": "shaded_citadels:block/stone_pot_inner",
+        "stone_pot_bottom": "shaded_citadels:block/stone_pot_bottom",
+        "particle": "shaded_citadels:block/stone_pot"
+    },
+    "elements": [
+        {
+            "from": [ 1, 2, 1 ], 
+            "to": [ 15, 13, 15 ], 
+            "faces": {
+                "north": { "texture": "#stone_pot", "uv": [ 1, 3, 15, 14 ] },
+                "east": { "texture": "#stone_pot", "uv": [ 1, 3, 15, 14 ] },
+                "south": { "texture": "#stone_pot", "uv": [ 1, 3, 15, 14 ] },
+                "west": { "texture": "#stone_pot", "uv": [ 1, 3, 15, 14 ] },
+                "up": { "texture": "#stone_pot_outer_top", "uv": [ 1, 1, 15, 15 ] },
+                "down": { "texture": "#stone_pot_bottom", "uv": [ 1, 1, 15, 15 ] }
+            }
+        },
+        {
+            "from": [ 3, 0, 3 ], 
+            "to": [ 13, 16, 4 ], 
+            "faces": {
+                "north": { "texture": "#stone_pot", "uv": [ 3, 0, 13, 16 ] },
+                "east": { "texture": "#stone_pot", "uv": [ 12, 0, 13, 16 ] },
+                "south": { "texture": "#stone_pot_inner", "uv": [ 3, 0, 13, 16 ] },
+                "west": { "texture": "#stone_pot", "uv": [ 3, 0, 4, 16 ] },
+                "up": { "texture": "#stone_pot_top", "uv": [ 3, 3, 13, 4 ], "cullface": "up" },
+                "down": { "texture": "#stone_pot_bottom", "uv": [ 3, 12, 13, 13 ], "cullface": "down" }
+            }
+        },
+        {
+            "from": [ 3, 0, 12 ], 
+            "to": [ 13, 16, 13 ], 
+            "faces": {
+                "north": { "texture": "#stone_pot_inner", "uv": [ 3, 0, 13, 16 ] },
+                "east": { "texture": "#stone_pot", "uv": [ 3, 0, 4, 16 ] },
+                "south": { "texture": "#stone_pot", "uv": [ 3, 0, 13, 16 ] },
+                "west": { "texture": "#stone_pot", "uv": [ 12, 0, 13, 16 ] },
+                "up": { "texture": "#stone_pot_top", "uv": [ 3, 12, 13, 13 ], "cullface": "up" },
+                "down": { "texture": "#stone_pot_bottom", "uv": [ 3, 3, 13, 4 ], "cullface": "down" }
+            }
+        },
+        {
+            "from": [ 4, 0, 4 ], 
+            "to": [ 12, 5, 12 ], 
+            "faces": {
+                "up": { "texture": "#stone_pot_top", "uv": [ 4, 4, 12, 12 ], "cullface": "up" },
+                "down": { "texture": "#stone_pot_bottom", "uv": [ 4, 4, 12, 12 ], "cullface": "down" }
+            }
+        },
+        {
+            "from": [ 3, 0, 4 ], 
+            "to": [ 4, 16, 12 ], 
+            "faces": {
+                "east": { "texture": "#stone_pot_inner", "uv": [ 4, 0, 12, 16 ] },
+                "west": { "texture": "#stone_pot", "uv": [ 3, 0, 11, 16 ] },
+                "up": { "texture": "#stone_pot_top", "uv": [ 3, 4, 4, 12 ], "cullface": "up" },
+                "down": { "texture": "#stone_pot_bottom", "uv": [ 12, 4, 13, 12 ], "cullface": "down" }
+            }
+        },
+        {
+            "from": [ 12, 0, 4 ], 
+            "to": [ 13, 16, 12 ], 
+            "faces": {
+                "east": { "texture": "#stone_pot", "uv": [ 4, 0, 12, 16 ] },
+                "west": { "texture": "#stone_pot_inner", "uv": [ 4, 0, 12, 16 ] },
+                "up": { "texture": "#stone_pot_top", "uv": [ 3, 4, 4, 12 ], "cullface": "up" },
+                "down": { "texture": "#stone_pot_bottom", "uv": [ 12, 4, 13, 12 ], "cullface": "down" }
+            }
+        }
+    ]
+}

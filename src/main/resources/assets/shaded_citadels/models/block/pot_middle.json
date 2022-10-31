@@ -1,0 +1,20 @@
+{
+    "parent": "block/block",
+    "render_type": "cutout",
+    "textures": {
+        "stone_pot_middle": "shaded_citadels:block/stone_pot_middle",
+        "particle": "shaded_citadels:block/stone_pot"
+    },
+    "elements": [
+        {
+            "from": [ 1, 0, 1 ], 
+            "to": [ 15, 16, 15 ], 
+            "faces": {
+                "north": { "texture": "#stone_pot_middle", "uv": [ 1, 0, 15, 16 ] },
+                "east": { "texture": "#stone_pot_middle", "uv": [ 1, 0, 15, 16 ] },
+                "south": { "texture": "#stone_pot_middle", "uv": [ 1, 0, 15, 16 ] },
+                "west": { "texture": "#stone_pot_middle", "uv": [ 1, 0, 15, 16 ] }
+            }
+        }
+    ]
+}

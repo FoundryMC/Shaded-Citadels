@@ -1,0 +1,22 @@
+{
+  "variants": {
+    "pot_segment=full,lid=true": {
+      "model": "shaded_citadels:block/pot_lid"
+    },
+    "pot_segment=full,lid=false": {
+      "model": "shaded_citadels:block/pot"
+    },
+    "pot_segment=top,lid=true": {
+      "model": "shaded_citadels:block/pot_upper_lid"
+    },
+    "pot_segment=top,lid=false": {
+      "model": "shaded_citadels:block/pot_upper"
+    },
+    "pot_segment=bottom": {
+      "model": "shaded_citadels:block/pot_lower"
+    },
+    "pot_segment=middle": {
+      "model": "shaded_citadels:block/pot_middle"
+    }
+  }
+}

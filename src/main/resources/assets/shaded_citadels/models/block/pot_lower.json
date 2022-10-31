@@ -1,0 +1,33 @@
+{
+    "parent": "block/block",
+    "render_type": "cutout",
+    "textures": {
+        "stone_pot_lower": "shaded_citadels:block/stone_pot_lower",
+        "stone_pot_bottom": "shaded_citadels:block/stone_pot_bottom",
+        "particle": "shaded_citadels:block/stone_pot"
+    },
+    "elements": [
+        {
+            "from": [ 1, 2, 1 ], 
+            "to": [ 15, 16, 15 ], 
+            "faces": {
+                "north": { "texture": "#stone_pot_lower", "uv": [ 1, 0, 15, 14 ] },
+                "east": { "texture": "#stone_pot_lower", "uv": [ 1, 0, 15, 14 ] },
+                "south": { "texture": "#stone_pot_lower", "uv": [ 1, 0, 15, 14 ] },
+                "west": { "texture": "#stone_pot_lower", "uv": [ 1, 0, 15, 14 ] },
+                "down": { "texture": "#stone_pot_bottom", "uv": [ 1, 1, 15, 15 ] }
+            }
+        },
+        {
+            "from": [ 3, 0, 3 ], 
+            "to": [ 13, 2, 13 ], 
+            "faces": {
+                "north": { "texture": "#stone_pot_lower", "uv": [ 3, 14, 13, 16 ] },
+                "east": { "texture": "#stone_pot_lower", "uv": [ 3, 14, 13, 16 ] },
+                "south": { "texture": "#stone_pot_lower", "uv": [ 3, 14, 13, 16 ] },
+                "west": { "texture": "#stone_pot_lower", "uv": [ 3, 14, 13, 16 ] },
+                "down": { "texture": "#stone_pot_bottom", "uv": [ 3, 3, 13, 13 ] }
+            }
+        }
+    ]
+}
