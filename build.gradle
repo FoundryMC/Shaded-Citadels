@@ -99,18 +99,16 @@ minecraft {
 sourceSets.main.resources { srcDir 'src/generated/resources' }
 
 repositories {
-    // Put repositories for dependencies here
-    // ForgeGradle automatically adds the Forge maven and Maven Central for you
-
-    // If you have mod jar dependencies in ./libs, you can declare them as a repository like so:
-    // flatDir {
-    //     dir 'libs'
-    // }
+    maven {
+        name = 'BlameJared Maven'
+        url = 'https://maven.blamejared.com'
+    }
 }
 
 dependencies {
     minecraft 'net.minecraftforge:forge:1.19.2-43.1.47'
     annotationProcessor 'org.spongepowered:mixin:0.8.5:processor'
+    implementation fg.deobf('foundry.veil:Veil-forge-1.19.2:1.0.0.4')
 }
 
 mixin {

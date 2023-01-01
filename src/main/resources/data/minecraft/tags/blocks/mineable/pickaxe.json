@@ -1,0 +1,12 @@
+{
+  "replace": false,
+  "values": [
+    "shaded_citadels:carved_deepslate",
+    "shaded_citadels:deepslate_lattice",
+    "shaded_citadels:smooth_deepslate",
+    "shaded_citadels:deepslate_pillar",
+    "shaded_citadels:deepslate_plinth",
+    "shaded_citadels:deepslate_blocks",
+    "shaded_citadels:antique_grates"
+  ]
+}

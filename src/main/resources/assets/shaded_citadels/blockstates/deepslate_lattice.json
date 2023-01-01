@@ -1,0 +1,8 @@
+{
+  "variants": {
+    "": [
+      {"model": "shaded_citadels:block/deepslate_lattice"},
+      {"model": "shaded_citadels:block/deepslate_lattice_1"}
+    ]
+  }
+}

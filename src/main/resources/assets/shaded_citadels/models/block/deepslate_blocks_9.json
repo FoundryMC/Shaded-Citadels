@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/cube_all",
+  "textures": {
+    "all": "shaded_citadels:block/deepslate_blocks_9"
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "variants": {
+    "facing=down": {
+      "model": "shaded_citadels:block/deepslate_plinth_upside_down"
+    },
+    "facing=east": {
+      "model": "shaded_citadels:block/deepslate_plinth",
+      "x": 90,
+      "y": 90
+    },
+    "facing=north": {
+      "model": "shaded_citadels:block/deepslate_plinth",
+      "x": 90
+    },
+    "facing=south": {
+      "model": "shaded_citadels:block/deepslate_plinth_upside_down",
+      "x": 90
+    },
+    "facing=up": {
+      "model": "shaded_citadels:block/deepslate_plinth"
+    },
+    "facing=west": {
+      "model": "shaded_citadels:block/deepslate_plinth_upside_down",
+      "x": 90,
+      "y": 90
+    }
+  }
+}

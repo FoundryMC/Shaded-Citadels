@@ -2,9 +2,12 @@ package birsy.shadedcitadels.common.block;
 
 import birsy.shadedcitadels.core.ShadedCitadelsMod;
 import birsy.shadedcitadels.core.registry.ShadedCitadelsBlocks;
+import net.minecraft.client.particle.ParticleEngine;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.sounds.SoundSource;
 import net.minecraft.util.RandomSource;
 import net.minecraft.util.StringRepresentable;
 import net.minecraft.world.entity.item.FallingBlockEntity;
@@ -16,6 +19,7 @@ import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.Fallable;
+import net.minecraft.world.level.block.SupportType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BambooLeaves;
@@ -68,7 +72,7 @@ public class Pot extends Block implements Fallable {
     public BlockState getStateForPlacement(BlockPlaceContext pContext) {
         if (pContext.getLevel().getBlockState(pContext.getClickedPos().below()).is(ShadedCitadelsBlocks.POT.get())) {
             return this.defaultBlockState().setValue(POT_SEGMENT, PotSegment.TOP);
-        } else if (!pContext.getLevel().getBlockState(pContext.getClickedPos().below()).isFaceSturdy(pContext.getLevel(), pContext.getClickedPos(), Direction.UP)) {
+        } else if (!pContext.getLevel().getBlockState(pContext.getClickedPos().below()).isFaceSturdy(pContext.getLevel(), pContext.getClickedPos(), Direction.UP, SupportType.CENTER)) {
             if (!pContext.getLevel().isClientSide()) {
                 ShadedCitadelsMod.LOGGER.info("fall");
                 pContext.getLevel().scheduleTick(pContext.getClickedPos(), ShadedCitadelsBlocks.POT.get(), 1);
@@ -114,15 +118,15 @@ public class Pot extends Block implements Fallable {
     }
     private static boolean validPotPlacement(ServerLevel level, BlockPos pos, BlockState state, BlockState belowBlockState, BlockState aboveBlockState) {
         switch ((PotSegment) state.getValue(POT_SEGMENT)) {
-            case FULL: return belowBlockState.isFaceSturdy(level, pos, Direction.UP);
+            case FULL: return belowBlockState.isFaceSturdy(level, pos, Direction.UP, SupportType.CENTER);
             case TOP: return isPot(belowBlockState);
             case MIDDLE: return isPot(belowBlockState) && isPot(aboveBlockState);
-            case BOTTOM: return belowBlockState.isFaceSturdy(level, pos, Direction.UP) && isPot(aboveBlockState);
+            case BOTTOM: return belowBlockState.isFaceSturdy(level, pos, Direction.UP, SupportType.CENTER) && isPot(aboveBlockState);
         }
         return true;
     }
     private static boolean shouldFall(ServerLevel level, BlockPos pos, BlockState state, BlockState belowBlockState) {
-        return !belowBlockState.isFaceSturdy(level, pos, Direction.UP) && isBottom(state);
+        return !belowBlockState.isFaceSturdy(level, pos, Direction.UP, SupportType.CENTER) && isBottom(state);
     }
     private static void spawnFallingPot(BlockState pState, ServerLevel pLevel, BlockPos pPos) {
         BlockPos.MutableBlockPos position = pPos.mutable();
@@ -130,7 +134,7 @@ public class Pot extends Block implements Fallable {
         for(BlockState blockstate = pState; isPot(blockstate); blockstate = pLevel.getBlockState(position)) {
             FallingBlockEntity fallingblockentity = FallingBlockEntity.fall(pLevel, position, blockstate);
             fallingblockentity.setHurtsEntities(2, 40);
-
+            fallingblockentity.cancelDrop = true;
             if (isTop(blockstate)) {
                 break;
             }
@@ -144,6 +148,11 @@ public class Pot extends Block implements Fallable {
     public void onLand(Level pLevel, BlockPos pPos, BlockState pState, BlockState pReplaceableState, FallingBlockEntity pFallingBlock) {
         Fallable.super.onLand(pLevel, pPos, pState, pReplaceableState, pFallingBlock);
         pLevel.destroyBlock(pPos, true);
+    }
+
+    @Override
+    public void onBrokenAfterFall(Level pLevel, BlockPos pPos, FallingBlockEntity pFallingBlock) {
+        pLevel.playSound(null, pPos, SoundEvents.GLASS_BREAK, SoundSource.BLOCKS, 1.0F, 0.8F);
     }
 
     private static boolean isBottom(BlockState state) {

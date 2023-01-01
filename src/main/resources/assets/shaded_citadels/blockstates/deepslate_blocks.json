@@ -1,0 +1,18 @@
+{
+  "variants": {
+    "": [
+      {"model": "shaded_citadels:block/deepslate_blocks"},
+      {"model": "shaded_citadels:block/deepslate_blocks_1"},
+      {"model": "shaded_citadels:block/deepslate_blocks_2"},
+      {"model": "shaded_citadels:block/deepslate_blocks_3"},
+      {"model": "shaded_citadels:block/deepslate_blocks_4"},
+      {"model": "shaded_citadels:block/deepslate_blocks_5"},
+      {"model": "shaded_citadels:block/deepslate_blocks_6"},
+      {"model": "shaded_citadels:block/deepslate_blocks_7"},
+      {"model": "shaded_citadels:block/deepslate_blocks_8"},
+      {"model": "shaded_citadels:block/deepslate_blocks_9"},
+      {"model": "shaded_citadels:block/deepslate_blocks_10"},
+      {"model": "shaded_citadels:block/deepslate_blocks_11"}
+    ]
+  }
+}

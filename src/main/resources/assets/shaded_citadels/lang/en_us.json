@@ -1,3 +1,9 @@
 {
-"block.shaded_citadels.carved_deepslate": "Deepslate Sigils"
+  "block.shaded_citadels.carved_deepslate": "Deepslate Sigils",
+  "block.shaded_citadels.deepslate_lattice": "Deepslate Lattice",
+  "block.shaded_citadels.smooth_deepslate": "Smooth Deepslate",
+  "block.shaded_citadels.deepslate_pillar": "Deepslate Pillar",
+  "block.shaded_citadels.deepslate_plinth": "Deepslate Plinth",
+  "block.shaded_citadels.deepslate_blocks": "Deepslate Blocks",
+  "block.shaded_citadels.antique_grates": "Antique Grates"
 }
