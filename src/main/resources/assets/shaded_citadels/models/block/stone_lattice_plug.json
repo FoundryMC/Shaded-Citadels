@@ -1,0 +1,18 @@
+{
+    "textures": {
+        "stone_lattice_inside": "shaded_citadels:block/stone_lattice_inside",
+        "stone_lattice": "shaded_citadels:block/stone_lattice",
+        "particle": "shaded_citadels:block/stone_lattice"
+
+    },
+    "elements": [
+        {
+            "from": [ 5, 5, 0 ], 
+            "to": [ 11, 11, 5 ], 
+            "faces": {
+                "north": { "texture": "#stone_lattice", "uv": [ 5, 5, 11, 11 ], "cullface": "north" },
+                "south": { "texture": "#stone_lattice_inside", "uv": [ 5, 5, 11, 11 ] }
+            }
+        }
+    ]
+}

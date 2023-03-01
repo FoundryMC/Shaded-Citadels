@@ -1,0 +1,36 @@
+{
+    "textures": {
+        "stone_lattice_inside": "shaded_citadels:block/stone_lattice_inside",
+        "particle": "shaded_citadels:block/stone_lattice"
+    },
+    "elements": [
+        {
+            "from": [ 5, 5, 0 ], 
+            "to": [ 5, 11, 5 ], 
+            "faces": {
+                "east": { "texture": "#stone_lattice_inside", "uv": [ 11, 5, 16, 11 ] }
+            }
+        },
+        {
+            "from": [ 11, 5, 0 ], 
+            "to": [ 11, 11, 5 ], 
+            "faces": {
+                "west": { "texture": "#stone_lattice_inside", "uv": [ 0, 5, 5, 11 ] }
+            }
+        },
+        {
+            "from": [ 5, 5, 0 ], 
+            "to": [ 11, 5, 5 ], 
+            "faces": {
+                "up": { "texture": "#stone_lattice_inside", "uv": [ 5, 11, 11, 16 ], "rotation": 180 }
+            }
+        },
+        {
+            "from": [ 5, 11, 0 ], 
+            "to": [ 11, 11, 5 ], 
+            "faces": {
+                "down": { "texture": "#stone_lattice_inside", "uv": [ 5, 0, 11, 5 ], "rotation": 180 }
+            }
+        }
+    ]
+}

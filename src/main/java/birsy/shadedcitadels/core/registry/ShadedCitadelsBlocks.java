@@ -3,6 +3,7 @@ package birsy.shadedcitadels.core.registry;
 import birsy.shadedcitadels.common.block.CarvedDeepslate;
 import birsy.shadedcitadels.common.block.DeepslatePlinth;
 import birsy.shadedcitadels.common.block.Pot;
+import birsy.shadedcitadels.common.block.StoneLattice;
 import birsy.shadedcitadels.core.ShadedCitadelsMod;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.CreativeModeTab;
@@ -28,6 +29,9 @@ public class ShadedCitadelsBlocks {
 
     public static final RegistryObject<Block> POT = createBlock("pot", () -> new Pot(BlockBehaviour.Properties.copy(Blocks.GLASS).sound(SoundType.GLASS).noOcclusion()), CreativeModeTab.TAB_DECORATIONS);
     public static final RegistryObject<Block> ANTIQUE_GRATES = createBlock("antique_grates", () -> new IronBarsBlock(BlockBehaviour.Properties.copy(Blocks.IRON_BARS).sound(SoundType.CHAIN)), CreativeModeTab.TAB_DECORATIONS);
+
+    public static final RegistryObject<Block> STONE_LATTICE = createBlock("stone_lattice", () -> new StoneLattice(BlockBehaviour.Properties.copy(Blocks.STONE_BRICKS).noOcclusion()), CreativeModeTab.TAB_BUILDING_BLOCKS);
+
 
     public static RegistryObject<Block> createBlock(String name, final Supplier<? extends Block> supplier, @Nullable CreativeModeTab group) {
         RegistryObject<Block> block = BLOCKS.register(name, supplier);

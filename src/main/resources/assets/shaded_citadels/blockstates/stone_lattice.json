@@ -1,0 +1,127 @@
+{
+  "multipart": [
+    {
+      "apply": {
+        "model": "shaded_citadels:block/stone_lattice"
+      }
+    },
+    {
+      "when": {
+        "north": "true"
+      },
+      "apply": {
+        "model": "shaded_citadels:block/stone_lattice_plug"
+      }
+    },
+    {
+      "when": {
+        "east": "true"
+      },
+      "apply": {
+        "model": "shaded_citadels:block/stone_lattice_plug",
+        "y": 90
+      }
+    },
+    {
+      "when": {
+        "south": "true"
+      },
+      "apply": {
+        "model": "shaded_citadels:block/stone_lattice_plug",
+        "y": 180
+      }
+    },
+    {
+      "when": {
+        "west": "true"
+      },
+      "apply": {
+        "model": "shaded_citadels:block/stone_lattice_plug",
+        "y": 270
+      }
+    },
+    {
+      "when": {
+        "up": "true"
+      },
+      "apply": {
+        "model": "shaded_citadels:block/stone_lattice_plug",
+        "x": 270
+      }
+    },
+    {
+      "when": {
+        "down": "true"
+      },
+      "apply": {
+        "model": "shaded_citadels:block/stone_lattice_plug",
+        "x": 90
+      }
+    },
+    {
+      "when": {
+        "north": "false"
+      },
+      "apply": [
+        {
+          "model": "shaded_citadels:block/stone_lattice_hole"
+        }
+      ]
+    },
+    {
+      "when": {
+        "east": "false"
+      },
+      "apply": [
+        {
+          "model": "shaded_citadels:block/stone_lattice_hole",
+          "y": 90
+        }
+      ]
+    },
+    {
+      "when": {
+        "south": "false"
+      },
+      "apply": [
+        {
+          "model": "shaded_citadels:block/stone_lattice_hole",
+          "y": 180
+        }
+      ]
+    },
+    {
+      "when": {
+        "west": "false"
+      },
+      "apply": [
+        {
+          "model": "shaded_citadels:block/stone_lattice_hole",
+          "y": 270
+        }
+      ]
+    },
+    {
+      "when": {
+        "up": "false"
+      },
+      "apply": [
+        {
+          "model": "shaded_citadels:block/stone_lattice_hole",
+          "x": 270
+        }
+      ]
+    },
+    {
+      "when": {
+        "down": "false"
+      },
+      "apply": [
+        {
+          "model": "shaded_citadels:block/stone_lattice_hole",
+          "x": 90
+        }
+      ]
+    }
+  ]
+}
