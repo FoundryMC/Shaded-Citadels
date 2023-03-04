@@ -6,10 +6,9 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.DirectionalBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
-import net.minecraft.world.level.block.state.properties.DirectionProperty;
 
-public class DeepslatePlinth extends DirectionalBlock {
-    public DeepslatePlinth(Properties properties) {
+public class Plinth extends DirectionalBlock {
+    public Plinth(Properties properties) {
         super(properties);
     }
 

@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "x": {
+      "item": "minecraft:stone"
+    }
+  },
+  "pattern": [
+    "xxx",
+    "x x",
+    "xxx"
+  ],
+  "result": {
+    "count": 8,
+    "item": "shaded_citadels:stone_lattice"
+  }
+}

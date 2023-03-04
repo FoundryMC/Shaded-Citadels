@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "count": 1,
+  "ingredient": {
+    "item": "shaded_citadels:antique_grates"
+  },
+  "result": "minecraft:iron_bars"
+}

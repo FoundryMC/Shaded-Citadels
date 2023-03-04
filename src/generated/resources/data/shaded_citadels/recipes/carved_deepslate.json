@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "x": {
+      "item": "minecraft:chiseled_deepslate"
+    },
+    "z": {
+      "item": "minecraft:deepslate_tiles"
+    }
+  },
+  "pattern": [
+    "xz",
+    "zx"
+  ],
+  "result": {
+    "count": 4,
+    "item": "shaded_citadels:carved_deepslate"
+  }
+}

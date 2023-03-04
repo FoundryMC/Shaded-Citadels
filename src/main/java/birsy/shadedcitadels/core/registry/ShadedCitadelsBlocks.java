@@ -1,7 +1,7 @@
 package birsy.shadedcitadels.core.registry;
 
 import birsy.shadedcitadels.common.block.CarvedDeepslate;
-import birsy.shadedcitadels.common.block.DeepslatePlinth;
+import birsy.shadedcitadels.common.block.Plinth;
 import birsy.shadedcitadels.common.block.Pot;
 import birsy.shadedcitadels.common.block.StoneLattice;
 import birsy.shadedcitadels.core.ShadedCitadelsMod;
@@ -25,7 +25,7 @@ public class ShadedCitadelsBlocks {
     public static final RegistryObject<Block> DEEPSLATE_LATTICE = createBlock("deepslate_lattice", () -> new Block(BlockBehaviour.Properties.copy(Blocks.CHISELED_DEEPSLATE)), CreativeModeTab.TAB_BUILDING_BLOCKS);
     public static final RegistryObject<Block> SMOOTH_DEEPSLATE = createBlock("smooth_deepslate", () -> new Block(BlockBehaviour.Properties.copy(Blocks.CHISELED_DEEPSLATE)), CreativeModeTab.TAB_BUILDING_BLOCKS);
     public static final RegistryObject<Block> DEEPSLATE_PILLAR = createBlock("deepslate_pillar", () -> new RotatedPillarBlock(BlockBehaviour.Properties.copy(Blocks.DEEPSLATE_BRICKS)), CreativeModeTab.TAB_BUILDING_BLOCKS);
-    public static final RegistryObject<Block> DEEPSLATE_PLINTH = createBlock("deepslate_plinth", () -> new DeepslatePlinth(BlockBehaviour.Properties.copy(Blocks.CHISELED_DEEPSLATE)), CreativeModeTab.TAB_BUILDING_BLOCKS);
+    public static final RegistryObject<Block> DEEPSLATE_PLINTH = createBlock("deepslate_plinth", () -> new Plinth(BlockBehaviour.Properties.copy(Blocks.CHISELED_DEEPSLATE)), CreativeModeTab.TAB_BUILDING_BLOCKS);
 
     public static final RegistryObject<Block> POT = createBlock("pot", () -> new Pot(BlockBehaviour.Properties.copy(Blocks.GLASS).sound(SoundType.GLASS).noOcclusion()), CreativeModeTab.TAB_DECORATIONS);
     public static final RegistryObject<Block> ANTIQUE_GRATES = createBlock("antique_grates", () -> new IronBarsBlock(BlockBehaviour.Properties.copy(Blocks.IRON_BARS).sound(SoundType.CHAIN)), CreativeModeTab.TAB_DECORATIONS);

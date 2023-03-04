@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "x": {
+      "item": "shaded_citadels:smooth_deepslate"
+    }
+  },
+  "pattern": [
+    "x x",
+    " x ",
+    "x x"
+  ],
+  "result": {
+    "count": 5,
+    "item": "shaded_citadels:deepslate_lattice"
+  }
+}

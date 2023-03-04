@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "count": 1,
+  "ingredient": {
+    "item": "shaded_citadels:deepslate_pillar"
+  },
+  "result": "shaded_citadels:carved_deepslate"
+}
