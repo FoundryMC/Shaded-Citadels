@@ -17,7 +17,7 @@ import java.util.function.Consumer;
 
 public class ShadedCitadelsRecipeProvider extends RecipeProvider {
     private static ItemLike[] FULL_DEEPSLATE_BLOCKS = {Blocks.DEEPSLATE, Blocks.COBBLED_DEEPSLATE, Blocks.POLISHED_DEEPSLATE, Blocks.DEEPSLATE_BRICKS, Blocks.CRACKED_DEEPSLATE_BRICKS, Blocks.DEEPSLATE_TILES, Blocks.CRACKED_DEEPSLATE_TILES, Blocks.CHISELED_DEEPSLATE, ShadedCitadelsBlocks.SMOOTH_DEEPSLATE.get(), ShadedCitadelsBlocks.DEEPSLATE_BLOCKS.get(), ShadedCitadelsBlocks.CARVED_DEEPSLATE.get(), ShadedCitadelsBlocks.DEEPSLATE_LATTICE.get(), ShadedCitadelsBlocks.DEEPSLATE_PILLAR.get(), ShadedCitadelsBlocks.DEEPSLATE_PLINTH.get()};
-    private static ItemLike[] FULL_STONE_BLOCKS = {Blocks.STONE, Blocks.STONE_BRICKS, Blocks.CRACKED_STONE_BRICKS, Blocks.CHISELED_STONE_BRICKS, Blocks.SMOOTH_STONE};
+    private static ItemLike[] FULL_STONE_BLOCKS = {Blocks.STONE, Blocks.STONE_BRICKS, Blocks.CRACKED_STONE_BRICKS, Blocks.CHISELED_STONE_BRICKS, Blocks.SMOOTH_STONE, ShadedCitadelsBlocks.STONE_LATTICE.get()};
 
     public ShadedCitadelsRecipeProvider(DataGenerator generatorIn) { super(generatorIn); }
 
