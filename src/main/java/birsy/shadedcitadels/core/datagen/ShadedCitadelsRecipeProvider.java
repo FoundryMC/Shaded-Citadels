@@ -9,10 +9,6 @@ import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.Blocks;
 
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Map;
-import java.util.Set;
 import java.util.function.Consumer;
 
 public class ShadedCitadelsRecipeProvider extends RecipeProvider {
@@ -81,6 +77,14 @@ public class ShadedCitadelsRecipeProvider extends RecipeProvider {
                 Blocks.IRON_BARS);
         stonecutterResultFromBase(consumer, Blocks.IRON_BARS,
                 ShadedCitadelsBlocks.ANTIQUE_GRATES.get());
+
+        ShapedRecipeBuilder.shaped(ShadedCitadelsBlocks.POT.get(), 1)
+                .pattern("x x")
+                .pattern("x x")
+                .pattern("xxx")
+                .define('x', ShadedCitadelsBlocks.SMOOTH_DEEPSLATE.get())
+                .unlockedBy("has_deepslate", InventoryChangeTrigger.TriggerInstance.hasItems(Blocks.DEEPSLATE))
+                .save(consumer);
 
         reversableStonecutterRecipes(consumer, FULL_DEEPSLATE_BLOCKS);
     }

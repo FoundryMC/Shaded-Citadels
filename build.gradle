@@ -16,7 +16,7 @@ plugins {
 }
 apply plugin: 'org.spongepowered.mixin'
 
-version = '1.19.2-0.0.0.6'
+version = '1.19.2-0.0.0.7'
 group = 'birsy.shaded_citadels'
 archivesBaseName = 'shaded_citadels'
 
