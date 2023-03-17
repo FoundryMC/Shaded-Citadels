@@ -14,6 +14,5 @@ public class DataGenerators {
         DataGenerator generator = event.getGenerator();
         generator.addProvider(event.includeServer(), new ShadedCitadelsRecipeProvider(generator));
         generator.addProvider(event.includeServer(), new ShadedCitadelsLootTableProvider(generator));
-        generator.addProvider(event.includeServer(), new ShadedCitadelsModelProvider(generator));
     }
 }
