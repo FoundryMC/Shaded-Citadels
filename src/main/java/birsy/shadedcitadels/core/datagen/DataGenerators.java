@@ -1,7 +1,6 @@
 package birsy.shadedcitadels.core.datagen;
 
 import birsy.shadedcitadels.core.datagen.loot.ShadedCitadelsLootTableProvider;
-import birsy.shadedcitadels.core.datagen.model.ShadedCitadelsModelProvider;
 import net.minecraft.data.DataGenerator;
 import net.minecraftforge.data.event.GatherDataEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
