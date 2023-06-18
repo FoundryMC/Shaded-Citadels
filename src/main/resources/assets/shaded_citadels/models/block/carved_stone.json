@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/cube_bottom_top",
+  "textures": {
+    "bottom": "shaded_citadels:block/carved_stone_bottom",
+    "side": "shaded_citadels:block/carved_stone_side",
+    "top": "shaded_citadels:block/carved_stone"
+  }
+}

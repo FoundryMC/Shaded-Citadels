@@ -36,7 +36,7 @@ import java.util.Map;
 import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.function.BiConsumer;
 
-public class Shanker extends Monster implements VibrationListener.VibrationListenerConfig {
+public class Secretary extends Monster implements VibrationListener.VibrationListenerConfig {
     private final DynamicGameEventListener<VibrationListener> dynamicGameEventListener;
     public InvestigationState state = InvestigationState.WANDER;
     protected BlockPos investigateTarget = BlockPos.ZERO;
@@ -46,16 +46,16 @@ public class Shanker extends Monster implements VibrationListener.VibrationListe
 
     public List<Pair<Vec3, Integer>> suspectedPlayerPositions = new ArrayList<>();
 
-    private static final EntityDataAccessor<BlockPos> TENDRIL_END_LEFT = SynchedEntityData.defineId(Shanker.class, EntityDataSerializers.BLOCK_POS);
+    private static final EntityDataAccessor<BlockPos> TENDRIL_END_LEFT = SynchedEntityData.defineId(Secretary.class, EntityDataSerializers.BLOCK_POS);
     private float previousTendrilLeftProgress = 0.0F;
     boolean retractingLeftTendril = true;
-    private static final EntityDataAccessor<Float> TENDRIL_LEFT_PROGRESS = SynchedEntityData.defineId(Shanker.class, EntityDataSerializers.FLOAT);
-    private static final EntityDataAccessor<BlockPos> TENDRIL_END_RIGHT = SynchedEntityData.defineId(Shanker.class, EntityDataSerializers.BLOCK_POS);
+    private static final EntityDataAccessor<Float> TENDRIL_LEFT_PROGRESS = SynchedEntityData.defineId(Secretary.class, EntityDataSerializers.FLOAT);
+    private static final EntityDataAccessor<BlockPos> TENDRIL_END_RIGHT = SynchedEntityData.defineId(Secretary.class, EntityDataSerializers.BLOCK_POS);
     private float previousTendrilRightProgress = 0.0F;
     boolean retractingRightTendril = true;
-    private static final EntityDataAccessor<Float> TENDRIL_RIGHT_PROGRESS = SynchedEntityData.defineId(Shanker.class, EntityDataSerializers.FLOAT);
+    private static final EntityDataAccessor<Float> TENDRIL_RIGHT_PROGRESS = SynchedEntityData.defineId(Secretary.class, EntityDataSerializers.FLOAT);
 
-    public Shanker(EntityType<? extends Monster> pEntityType, Level pLevel) {
+    public Secretary(EntityType<? extends Monster> pEntityType, Level pLevel) {
         super(pEntityType, pLevel);
         this.setPersistenceRequired();
         this.setCustomNameVisible(true);
@@ -96,8 +96,8 @@ public class Shanker extends Monster implements VibrationListener.VibrationListe
 
     protected void registerGoals() {
         //this.goalSelector.addGoal(0, new FloatGoal(this));
-        this.goalSelector.addGoal(3, new ShankerAI.InvestigateGoal(this));
-        this.goalSelector.addGoal(4, new ShankerAI.LongWanderGoal(this));
+        this.goalSelector.addGoal(3, new SecretaryAI.InvestigateGoal(this));
+        this.goalSelector.addGoal(4, new SecretaryAI.LongWanderGoal(this));
         //this.goalSelector.addGoal(8, new LookAtPlayerGoal(this, Player.class, 8.0F));
         //this.goalSelector.addGoal(8, new RandomLookAroundGoal(this));
     }
@@ -177,7 +177,7 @@ public class Shanker extends Monster implements VibrationListener.VibrationListe
 
     @Override
     public boolean shouldListen(ServerLevel pLevel, GameEventListener pListener, BlockPos pPos, GameEvent pGameEvent, GameEvent.Context pContext) {
-        return !this.isNoAi() && !this.isDeadOrDying() && pLevel.getWorldBorder().isWithinBounds(pPos) && !this.isRemoved() && this.level == pLevel && !(pContext.sourceEntity() instanceof Shanker) && vibrationCooldown <= 0;
+        return !this.isNoAi() && !this.isDeadOrDying() && pLevel.getWorldBorder().isWithinBounds(pPos) && !this.isRemoved() && this.level == pLevel && !(pContext.sourceEntity() instanceof Secretary) && vibrationCooldown <= 0;
     }
 
     @Override

@@ -13,7 +13,7 @@ import java.util.function.Consumer;
 
 public class ShadedCitadelsRecipeProvider extends RecipeProvider {
     private static ItemLike[] FULL_DEEPSLATE_BLOCKS = {Blocks.DEEPSLATE, Blocks.COBBLED_DEEPSLATE, Blocks.POLISHED_DEEPSLATE, Blocks.DEEPSLATE_BRICKS, Blocks.CRACKED_DEEPSLATE_BRICKS, Blocks.DEEPSLATE_TILES, Blocks.CRACKED_DEEPSLATE_TILES, Blocks.CHISELED_DEEPSLATE, ShadedCitadelsBlocks.SMOOTH_DEEPSLATE.get(), ShadedCitadelsBlocks.DEEPSLATE_BLOCKS.get(), ShadedCitadelsBlocks.CARVED_DEEPSLATE.get(), ShadedCitadelsBlocks.DEEPSLATE_LATTICE.get(), ShadedCitadelsBlocks.DEEPSLATE_PILLAR.get(), ShadedCitadelsBlocks.DEEPSLATE_PLINTH.get()};
-    private static ItemLike[] FULL_STONE_BLOCKS = {Blocks.STONE, Blocks.STONE_BRICKS, Blocks.CRACKED_STONE_BRICKS, Blocks.CHISELED_STONE_BRICKS, Blocks.SMOOTH_STONE, ShadedCitadelsBlocks.STONE_LATTICE.get()};
+    private static ItemLike[] FULL_STONE_BLOCKS = {Blocks.STONE, Blocks.STONE_BRICKS, Blocks.CRACKED_STONE_BRICKS, Blocks.CHISELED_STONE_BRICKS, Blocks.SMOOTH_STONE, ShadedCitadelsBlocks.STONE_LATTICE.get(), ShadedCitadelsBlocks.CARVED_STONE.get(), ShadedCitadelsBlocks.STONE_PLINTH.get(), ShadedCitadelsBlocks.STONE_PILLAR.get()};
 
     public ShadedCitadelsRecipeProvider(DataGenerator generatorIn) { super(generatorIn); }
 
@@ -26,6 +26,27 @@ public class ShadedCitadelsRecipeProvider extends RecipeProvider {
                 .pattern("xxx")
                 .define('x', Blocks.STONE)
                 .unlockedBy("has_stone", InventoryChangeTrigger.TriggerInstance.hasItems(Blocks.STONE))
+                .save(consumer);
+        ShapedRecipeBuilder.shaped(ShadedCitadelsBlocks.STONE_PILLAR.get(), 2)
+                .pattern("x")
+                .pattern("x")
+                .define('x', Blocks.STONE)
+                .unlockedBy("has_stone", InventoryChangeTrigger.TriggerInstance.hasItems(Blocks.STONE))
+                .save(consumer);
+        ShapedRecipeBuilder.shaped(ShadedCitadelsBlocks.CARVED_STONE.get(), 4)
+                .pattern("xz")
+                .pattern("zx")
+                .define('x', Blocks.CHISELED_STONE_BRICKS)
+                .define('z', Blocks.STONE_BRICKS)
+                .unlockedBy("has_stone_bricks", InventoryChangeTrigger.TriggerInstance.hasItems(Blocks.STONE_BRICKS))
+                .save(consumer);
+        ShapedRecipeBuilder.shaped(ShadedCitadelsBlocks.STONE_PLINTH.get(), 3)
+                .pattern("x")
+                .pattern("z")
+                .pattern("x")
+                .define('x', Blocks.STONE)
+                .define('z', Blocks.CHISELED_STONE_BRICKS)
+                .unlockedBy("has_stone_bricks", InventoryChangeTrigger.TriggerInstance.hasItems(Blocks.STONE_BRICKS))
                 .save(consumer);
         reversableStonecutterRecipes(consumer, FULL_STONE_BLOCKS);
 
@@ -68,7 +89,7 @@ public class ShadedCitadelsRecipeProvider extends RecipeProvider {
                 .define('z', Blocks.DEEPSLATE_TILES)
                 .unlockedBy("has_deepslate", InventoryChangeTrigger.TriggerInstance.hasItems(Blocks.DEEPSLATE))
                 .save(consumer);
-        ShapelessRecipeBuilder.shapeless(ShadedCitadelsBlocks.ANTIQUE_GRATES.get(), 4)
+        ShapelessRecipeBuilder.shapeless(ShadedCitadelsBlocks.ANTIQUE_GRATES.get(), 8)
                 .requires(Blocks.DEEPSLATE)
                 .requires(Blocks.IRON_BARS, 3)
                 .unlockedBy("has_deepslate", InventoryChangeTrigger.TriggerInstance.hasItems(Blocks.DEEPSLATE))

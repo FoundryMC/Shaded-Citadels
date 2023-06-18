@@ -1,8 +1,8 @@
 package birsy.shadedcitadels.core.registry;
 
-import birsy.shadedcitadels.client.render.entity.ShankerRenderer;
+import birsy.shadedcitadels.client.render.entity.SecretaryRenderer;
 import birsy.shadedcitadels.client.render.entity.model.PlaceholderModel;
-import birsy.shadedcitadels.common.entity.monster.Shanker;
+import birsy.shadedcitadels.common.entity.monster.Secretary;
 import birsy.shadedcitadels.core.ShadedCitadelsMod;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.EntityType;
@@ -20,16 +20,16 @@ import net.minecraftforge.registries.RegistryObject;
 public class ShadedCitadelsEntities {
     public static final DeferredRegister<EntityType<?>> ENTITIES = DeferredRegister.create(ForgeRegistries.ENTITY_TYPES, ShadedCitadelsMod.MODID);
 
-    public static final RegistryObject<EntityType<Shanker>> SHANKER = createEntity("shanker", EntityType.Builder.of(Shanker::new, MobCategory.CREATURE).sized(1.0f, 1.8f));
+    public static final RegistryObject<EntityType<Secretary>> SECRETARY = createEntity("secretary", EntityType.Builder.of(Secretary::new, MobCategory.CREATURE).sized(1.0f, 1.8f));
 
     @SubscribeEvent
     public static void registerEntityAttribute(EntityAttributeCreationEvent event) {
-        event.put(SHANKER.get(), Shanker.createAttributes().build());
+        event.put(SECRETARY.get(), Secretary.createAttributes().build());
     }
 
     @SubscribeEvent
     public static void registerEntityRenders(EntityRenderersEvent.RegisterRenderers event) {
-        event.registerEntityRenderer(ShadedCitadelsEntities.SHANKER.get(), ShankerRenderer::new);
+        event.registerEntityRenderer(ShadedCitadelsEntities.SECRETARY.get(), SecretaryRenderer::new);
     }
 
     @SubscribeEvent
@@ -37,7 +37,7 @@ public class ShadedCitadelsEntities {
         event.registerLayerDefinition(PlaceholderModel.LAYER_LOCATION, PlaceholderModel::createBodyLayer);
     }
 
-    private static RegistryObject<EntityType<Shanker>> createEntity (String name, EntityType.Builder entityBuilder) {
+    private static RegistryObject<EntityType<Secretary>> createEntity (String name, EntityType.Builder entityBuilder) {
         return ENTITIES.register(name, () -> entityBuilder.build(new ResourceLocation(ShadedCitadelsMod.MODID, name).toString()));
     }
 }

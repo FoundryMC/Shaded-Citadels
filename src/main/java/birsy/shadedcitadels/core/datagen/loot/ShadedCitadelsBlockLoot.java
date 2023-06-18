@@ -74,6 +74,11 @@ public class ShadedCitadelsBlockLoot implements Consumer<BiConsumer<ResourceLoca
         this.dropSelf(ShadedCitadelsBlocks.ANTIQUE_GRATES.get());
 
         this.dropSelf(ShadedCitadelsBlocks.STONE_LATTICE.get());
+        this.dropSelf(ShadedCitadelsBlocks.STONE_PILLAR.get());
+        this.dropSelf(ShadedCitadelsBlocks.STONE_PLINTH.get());
+        this.dropSelf(ShadedCitadelsBlocks.CARVED_STONE.get());
+        this.dropSelf(ShadedCitadelsBlocks.SMOOTH_DEEPSLATE.get());
+
     }
 
     public void accept(BiConsumer<ResourceLocation, LootTable.Builder> p_124179_) {

@@ -8,5 +8,9 @@
   "block.shaded_citadels.antique_grates": "Antique Grates",
   "block.shaded_citadels.pot": "Deepslate Pot",
 
-  "block.shaded_citadels.stone_lattice": "Stone Lattice"
+  "block.shaded_citadels.stone_lattice": "Stone Lattice",
+  "block.shaded_citadels.stone_pillar": "Stone Pillar",
+  "block.shaded_citadels.stone_plinth": "Stone Plinth",
+  "block.shaded_citadels.carved_stone": "Carved Stone"
+
 }

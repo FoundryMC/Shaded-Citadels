@@ -1,7 +1,7 @@
 package birsy.shadedcitadels.client.render.entity;
 
 import birsy.shadedcitadels.client.render.entity.model.PlaceholderModel;
-import birsy.shadedcitadels.common.entity.monster.Shanker;
+import birsy.shadedcitadels.common.entity.monster.Secretary;
 import birsy.shadedcitadels.core.ShadedCitadelsMod;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
@@ -15,14 +15,14 @@ import net.minecraft.client.renderer.entity.MobRenderer;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.phys.Vec3;
 
-public class ShankerRenderer extends MobRenderer<Shanker, PlaceholderModel<Shanker>> {
+public class SecretaryRenderer extends MobRenderer<Secretary, PlaceholderModel<Secretary>> {
     private static final ResourceLocation TEXTURE_LOCATION = new ResourceLocation(ShadedCitadelsMod.MODID, "textures/entity/placeholder.png");
-    public ShankerRenderer(EntityRendererProvider.Context context) {
+    public SecretaryRenderer(EntityRendererProvider.Context context) {
         super(context, new PlaceholderModel<>(context.bakeLayer(PlaceholderModel.LAYER_LOCATION)), 1.0F);
     }
 
     @Override
-    public void render(Shanker pEntity, float pEntityYaw, float pPartialTicks, PoseStack pMatrixStack, MultiBufferSource pBuffer, int pPackedLight) {
+    public void render(Secretary pEntity, float pEntityYaw, float pPartialTicks, PoseStack pMatrixStack, MultiBufferSource pBuffer, int pPackedLight) {
         this.getModel().setColors(0.0F, 0.0F, 0.0F, 1.0F);
         ModelPart part = this.getModel().part;
         part.y -= 8;
@@ -86,7 +86,7 @@ public class ShankerRenderer extends MobRenderer<Shanker, PlaceholderModel<Shank
     /**
      * Returns the location of an entity's texture.
      */
-    public ResourceLocation getTextureLocation(Shanker entity) {
+    public ResourceLocation getTextureLocation(Secretary entity) {
         return TEXTURE_LOCATION;
     }
 }

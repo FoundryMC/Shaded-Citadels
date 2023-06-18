@@ -1,0 +1,26 @@
+{
+  "variants": {
+    "facing=down": {
+      "model": "shaded_citadels:block/stone_plinth",
+      "x": 180
+    },
+    "facing=east": {
+      "model": "shaded_citadels:block/stone_plinth_horizontal",
+      "y": 90
+    },
+    "facing=north": {
+      "model": "shaded_citadels:block/stone_plinth_horizontal"
+    },
+    "facing=south": {
+      "model": "shaded_citadels:block/stone_plinth_horizontal",
+      "y": 180
+    },
+    "facing=up": {
+      "model": "shaded_citadels:block/stone_plinth"
+    },
+    "facing=west": {
+      "model": "shaded_citadels:block/stone_plinth_horizontal",
+      "y": 270
+    }
+  }
+}

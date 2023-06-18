@@ -1,0 +1,12 @@
+{
+  "parent": "minecraft:block/cube",
+  "textures": {
+    "north": "shaded_citadels:block/stone_plinth_top",
+    "south": "shaded_citadels:block/stone_plinth_bottom",
+    "east": "shaded_citadels:block/stone_plinth_flipped_horizontal",
+    "west": "shaded_citadels:block/stone_plinth_horizontal",
+    "up": "shaded_citadels:block/stone_plinth",
+    "down": "shaded_citadels:block/stone_plinth",
+    "particle": "shaded_citadels:block/stone_plinth"
+  }
+}

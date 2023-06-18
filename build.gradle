@@ -16,7 +16,7 @@ plugins {
 }
 apply plugin: 'org.spongepowered.mixin'
 
-version = '1.19.2-0.0.0.7'
+version = '1.19.2-0.0.0.8'
 group = 'birsy.shaded_citadels'
 archivesBaseName = 'shaded_citadels'
 
@@ -108,7 +108,6 @@ repositories {
 dependencies {
     minecraft 'net.minecraftforge:forge:1.19.2-43.1.47'
     annotationProcessor 'org.spongepowered:mixin:0.8.5:processor'
-    implementation fg.deobf('foundry.veil:Veil-forge-1.19.2:1.0.0.4')
 }
 
 mixin {

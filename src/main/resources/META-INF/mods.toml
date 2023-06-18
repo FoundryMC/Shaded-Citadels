@@ -9,7 +9,7 @@ displayName="Shaded Citadels"
 # updateJSONURL="https://change.me.example.invalid/updates.json"
 # displayURL="https://change.me.to.your.mods.homepage.example.invalid/"
 # logoFile="examplemod.png"
-credits="Thanks for this example mod goes to Java"
+credits="Foundry Modding team"
 authors="CAPPIN and DAKRAS"
 description='''Deeper and darker!'''
 
@@ -23,11 +23,5 @@ description='''Deeper and darker!'''
     modId="minecraft"
     mandatory=true
     versionRange="[1.19.2,1.20)"
-    ordering="NONE"
-    side="BOTH"
-[[dependencies.shaded_citadels]]
-    modId="veil"
-    mandatory=true
-    versionRange="[0,)"
     ordering="NONE"
     side="BOTH"

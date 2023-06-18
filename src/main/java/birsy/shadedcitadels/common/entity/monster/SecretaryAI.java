@@ -9,23 +9,23 @@ import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.HitResult;
 import net.minecraft.world.phys.Vec3;
 
-public class ShankerAI {
+public class SecretaryAI {
     public static class LongWanderGoal extends Goal {
-        private final Shanker mob;
+        private final Secretary mob;
         private Vec3 movementVector;
 
-        public LongWanderGoal(Shanker mob) {
+        public LongWanderGoal(Secretary mob) {
             this.mob = mob;
         }
 
         @Override
         public boolean canUse() {
-            return mob.state == Shanker.InvestigationState.WANDER;
+            return mob.state == Secretary.InvestigationState.WANDER;
         }
 
         @Override
         public boolean canContinueToUse() {
-            return mob.state == Shanker.InvestigationState.WANDER;
+            return mob.state == Secretary.InvestigationState.WANDER;
         }
 
         @Override
@@ -131,18 +131,18 @@ public class ShankerAI {
     }
 
     public static class InvestigateGoal extends Goal {
-        private final Shanker mob;
+        private final Secretary mob;
         private BlockPos investigationPos;
         private boolean recognizedTarget = false;
         private int checks = 0;
         private int ticksFromSearchStart = 0;
-        public InvestigateGoal(Shanker mob) {
+        public InvestigateGoal(Secretary mob) {
             this.mob = mob;
         }
 
         @Override
         public boolean canUse() {
-            return mob.state == Shanker.InvestigationState.INVESTIGATE;
+            return mob.state == Secretary.InvestigationState.INVESTIGATE;
         }
 
         @Override
@@ -183,7 +183,7 @@ public class ShankerAI {
 
         @Override
         public boolean canContinueToUse() {
-            if (recognizedTarget || this.mob.state != Shanker.InvestigationState.INVESTIGATE || this.checks > 3) {
+            if (recognizedTarget || this.mob.state != Secretary.InvestigationState.INVESTIGATE || this.checks > 3) {
                 ShadedCitadelsMod.LOGGER.info("recognized target: " + recognizedTarget + "\nmob.state: " + mob.state.toString() + "\nchecks: " + checks);
                 return false;
             }
@@ -193,7 +193,7 @@ public class ShankerAI {
         @Override
         public void stop() {
             ShadedCitadelsMod.LOGGER.info("Finished investigating " + this.investigationPos);
-            this.mob.state = Shanker.InvestigationState.WANDER;
+            this.mob.state = Secretary.InvestigationState.WANDER;
             this.mob.getNavigation().stop();
             this.checks = 0;
             this.recognizedTarget = false;

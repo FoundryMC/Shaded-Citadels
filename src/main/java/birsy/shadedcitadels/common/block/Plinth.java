@@ -8,8 +8,11 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 
 public class Plinth extends DirectionalBlock {
-    public Plinth(Properties properties) {
+    private final boolean upsideDown;
+
+    public Plinth(Properties properties, boolean upsideDown) {
         super(properties);
+        this.upsideDown = upsideDown;
     }
 
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> pBuilder) {
@@ -17,7 +20,8 @@ public class Plinth extends DirectionalBlock {
     }
 
     public BlockState getStateForPlacement(BlockPlaceContext pContext) {
-        Direction facing = pContext.getNearestLookingDirection().getOpposite();
+        Direction facing = upsideDown ? pContext.getNearestLookingDirection().getOpposite() : pContext.getNearestLookingDirection();
+        if (pContext.getPlayer().isShiftKeyDown()) facing = facing.getOpposite();
 
         return this.defaultBlockState().setValue(FACING, facing);
     }

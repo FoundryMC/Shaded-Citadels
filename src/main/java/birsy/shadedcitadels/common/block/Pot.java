@@ -5,9 +5,13 @@ import birsy.shadedcitadels.core.registry.ShadedCitadelsBlocks;
 import net.minecraft.client.particle.ParticleEngine;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.core.particles.BlockParticleOption;
+import net.minecraft.core.particles.ParticleOptions;
+import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
+import net.minecraft.tags.FluidTags;
 import net.minecraft.util.RandomSource;
 import net.minecraft.util.StringRepresentable;
 import net.minecraft.world.entity.item.FallingBlockEntity;
@@ -88,45 +92,19 @@ public class Pot extends Block implements Fallable {
         if (shouldFall(pLevel, pPos, pState, belowState)) {
             spawnFallingPot(pState, pLevel, pPos);
         }
-        BlockState aboveState = pLevel.getBlockState(pPos.above());
-        if (!validPotPlacement(pLevel, pPos, pState, belowState, aboveState)) {
-            pLevel.destroyBlock(pPos, true);
-
-            BlockPos.MutableBlockPos position = pPos.mutable();
-            boolean updateAbove = pState.getValue(POT_SEGMENT) == PotSegment.BOTTOM || pState.getValue(POT_SEGMENT) == PotSegment.MIDDLE;
-            boolean updateBelow = pState.getValue(POT_SEGMENT) == PotSegment.TOP || pState.getValue(POT_SEGMENT) == PotSegment.MIDDLE;
-            if (updateAbove) {
-                for (BlockState blockstate = pState; isPot(blockstate); blockstate = pLevel.getBlockState(position)) {
-                    pLevel.destroyBlock(position, true);
-                    if (isTop(blockstate)) {
-                        break;
-                    }
-                    position.move(Direction.UP);
-                }
-            }
-            if (updateBelow) {
-                position.set(pState.getValue(POT_SEGMENT) == PotSegment.MIDDLE ? pPos.below() : pPos);
-                for (BlockState blockstate = pState; isPot(blockstate); blockstate = pLevel.getBlockState(position)) {
-                    pLevel.destroyBlock(position, true);
-                    if (isBottom(blockstate)) {
-                        break;
-                    }
-                    position.move(Direction.DOWN);
-                }
-            }
-        }
     }
-    private static boolean validPotPlacement(ServerLevel level, BlockPos pos, BlockState state, BlockState belowBlockState, BlockState aboveBlockState) {
+
+    private static boolean validPotPlacement(LevelAccessor level, BlockPos pos, BlockState state, BlockState belowBlockState, BlockState aboveBlockState) {
         switch ((PotSegment) state.getValue(POT_SEGMENT)) {
-            case FULL: return belowBlockState.isFaceSturdy(level, pos, Direction.UP, SupportType.CENTER);
+            case FULL: return belowBlockState.isFaceSturdy(level, pos, Direction.UP, SupportType.RIGID);
             case TOP: return isPot(belowBlockState);
             case MIDDLE: return isPot(belowBlockState) && isPot(aboveBlockState);
-            case BOTTOM: return belowBlockState.isFaceSturdy(level, pos, Direction.UP, SupportType.CENTER) && isPot(aboveBlockState);
+            case BOTTOM: return belowBlockState.isFaceSturdy(level, pos, Direction.UP, SupportType.RIGID) && isPot(aboveBlockState);
         }
         return true;
     }
     private static boolean shouldFall(ServerLevel level, BlockPos pos, BlockState state, BlockState belowBlockState) {
-        return !belowBlockState.isFaceSturdy(level, pos, Direction.UP, SupportType.CENTER) && isBottom(state);
+        return !belowBlockState.isFaceSturdy(level, pos, Direction.UP, SupportType.RIGID) && isBottom(state);
     }
     private static void spawnFallingPot(BlockState pState, ServerLevel pLevel, BlockPos pPos) {
         BlockPos.MutableBlockPos position = pPos.mutable();
@@ -153,6 +131,14 @@ public class Pot extends Block implements Fallable {
     @Override
     public void onBrokenAfterFall(Level pLevel, BlockPos pPos, FallingBlockEntity pFallingBlock) {
         pLevel.playSound(null, pPos, SoundEvents.GLASS_BREAK, SoundSource.BLOCKS, 1.0F, 0.8F);
+        ParticleOptions particleoptions = new BlockParticleOption(ParticleTypes.BLOCK, pFallingBlock.getBlockState());
+        for (int x = 0; x < 4; x++) {
+            for (int y = 0; y < 4; y++) {
+                for (int z = 0; z < 4; z++) {
+                    pLevel.addParticle(particleoptions, true, pPos.getX() + x, pPos.getY() + y, pPos.getZ() + z, 0, 0, 0);
+                }
+            }
+        }
     }
 
     private static boolean isBottom(BlockState state) {
@@ -178,7 +164,34 @@ public class Pot extends Block implements Fallable {
             }
         }
         if (pDirection == Direction.UP || pDirection == Direction.DOWN) {
-            pLevel.scheduleTick(pCurrentPos, ShadedCitadelsBlocks.POT.get(), 1);
+            BlockState belowState = pLevel.getBlockState(pCurrentPos.below());
+            BlockState aboveState = pLevel.getBlockState(pCurrentPos.above());
+            if (!validPotPlacement(pLevel, pCurrentPos, pState, belowState, aboveState)) {
+                pLevel.destroyBlock(pCurrentPos, true);
+
+                BlockPos.MutableBlockPos position = pCurrentPos.mutable();
+                boolean updateAbove = pState.getValue(POT_SEGMENT) == PotSegment.BOTTOM || pState.getValue(POT_SEGMENT) == PotSegment.MIDDLE;
+                if (updateAbove) {
+                    for (int i = 0; i < 256; i++) {
+                        position.move(Direction.UP);
+                        BlockState state = pLevel.getBlockState(position);
+                        if (isPot(state)) {
+                            pLevel.destroyBlock(position, true);
+                        } else break;
+                        if (isTop(state)) break;
+                    }}
+
+                boolean updateBelow = pState.getValue(POT_SEGMENT) == PotSegment.TOP || pState.getValue(POT_SEGMENT) == PotSegment.MIDDLE;
+                if (updateBelow) {
+                    for (int i = 0; i < 256; i++) {
+                        position.move(Direction.DOWN);
+                        BlockState state = pLevel.getBlockState(position);
+                        if (isPot(state)) {
+                            pLevel.destroyBlock(position, true);
+                        } else break;
+                        if (isBottom(state)) break;
+                    }}
+            }
         }
 
         return super.updateShape(pState, pDirection, pNeighborState, pLevel, pCurrentPos, pNeighborPos);
