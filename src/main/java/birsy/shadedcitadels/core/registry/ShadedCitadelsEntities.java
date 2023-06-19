@@ -2,6 +2,7 @@ package birsy.shadedcitadels.core.registry;
 
 import birsy.shadedcitadels.client.render.entity.SecretaryRenderer;
 import birsy.shadedcitadels.client.render.entity.model.PlaceholderModel;
+import birsy.shadedcitadels.client.render.entity.model.SecretaryModel;
 import birsy.shadedcitadels.common.entity.monster.Secretary;
 import birsy.shadedcitadels.core.ShadedCitadelsMod;
 import net.minecraft.resources.ResourceLocation;
@@ -20,7 +21,7 @@ import net.minecraftforge.registries.RegistryObject;
 public class ShadedCitadelsEntities {
     public static final DeferredRegister<EntityType<?>> ENTITIES = DeferredRegister.create(ForgeRegistries.ENTITY_TYPES, ShadedCitadelsMod.MODID);
 
-    public static final RegistryObject<EntityType<Secretary>> SECRETARY = createEntity("secretary", EntityType.Builder.of(Secretary::new, MobCategory.CREATURE).sized(1.0f, 1.8f));
+    public static final RegistryObject<EntityType<Secretary>> SECRETARY = createEntity("secretary", EntityType.Builder.of(Secretary::new, MobCategory.CREATURE).sized(1.0f, 3.75f));
 
     @SubscribeEvent
     public static void registerEntityAttribute(EntityAttributeCreationEvent event) {
@@ -34,7 +35,7 @@ public class ShadedCitadelsEntities {
 
     @SubscribeEvent
     public static void registerLayerDefinition(EntityRenderersEvent.RegisterLayerDefinitions event) {
-        event.registerLayerDefinition(PlaceholderModel.LAYER_LOCATION, PlaceholderModel::createBodyLayer);
+        event.registerLayerDefinition(SecretaryModel.LAYER_LOCATION, SecretaryModel::createBodyLayer);
     }
 
     private static RegistryObject<EntityType<Secretary>> createEntity (String name, EntityType.Builder entityBuilder) {

@@ -50,14 +50,16 @@ public class SecretaryAI {
             movementVector = movementVector.normalize();
 
             jumpIfNeedBe();
-            //this.mob.getMoveControl().setWantedPosition(this.mob.getX() + this.movementVector.x(), this.mob.getY() + this.movementVector.y(), this.mob.getZ() + this.movementVector.z(), 1.0F);
+            this.mob.getMoveControl().setWantedPosition(this.mob.getX() + this.movementVector.x(), this.mob.getY() + this.movementVector.y(), this.mob.getZ() + this.movementVector.z(), 1.0F);
         }
 
         private void jumpIfNeedBe() {
+            if (!this.mob.isOnGround()) return;
+
             Vec3 castPosition = mob.getPosition(1.0F).add(0, mob.getStepHeight(), 0);
             HitResult jumpCheckBottom = mob.level.clip(new ClipContext(castPosition, castPosition.add(movementVector.scale(mob.getBbWidth() / 2.0F + 0.2F)), ClipContext.Block.COLLIDER, ClipContext.Fluid.ANY, mob));
 
-            castPosition = mob.getPosition(1.0F).add(0, mob.getEyeHeight(), 0);
+            castPosition = mob.getPosition(1.0F).add(0, mob.getStepHeight() + 1.0F, 0);
             HitResult jumpCheckTop = mob.level.clip(new ClipContext(castPosition, castPosition.add(movementVector.scale(mob.getBbWidth() / 2.0F + 0.2F)), ClipContext.Block.COLLIDER, ClipContext.Fluid.ANY, mob));
 
             if (jumpCheckBottom.getType() == HitResult.Type.BLOCK && jumpCheckTop.getType() == HitResult.Type.MISS) {
@@ -197,6 +199,9 @@ public class SecretaryAI {
             this.mob.getNavigation().stop();
             this.checks = 0;
             this.recognizedTarget = false;
+
+            this.mob.getEntityData().set(Secretary.EXCITEMENT, Math.max(this.mob.getEntityData().get(Secretary.EXCITEMENT) - 0.5F, 0));
+
             super.stop();
         }
 

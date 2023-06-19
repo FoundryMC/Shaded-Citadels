@@ -1,6 +1,7 @@
 package birsy.shadedcitadels.client.render.entity;
 
 import birsy.shadedcitadels.client.render.entity.model.PlaceholderModel;
+import birsy.shadedcitadels.client.render.entity.model.SecretaryModel;
 import birsy.shadedcitadels.common.entity.monster.Secretary;
 import birsy.shadedcitadels.core.ShadedCitadelsMod;
 import com.mojang.blaze3d.vertex.PoseStack;
@@ -13,23 +14,23 @@ import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.client.renderer.entity.MobRenderer;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.util.Mth;
 import net.minecraft.world.phys.Vec3;
+import org.jetbrains.annotations.Nullable;
 
-public class SecretaryRenderer extends MobRenderer<Secretary, PlaceholderModel<Secretary>> {
-    private static final ResourceLocation TEXTURE_LOCATION = new ResourceLocation(ShadedCitadelsMod.MODID, "textures/entity/placeholder.png");
+public class SecretaryRenderer extends MobRenderer<Secretary, SecretaryModel<Secretary>> {
+    private static final ResourceLocation TEXTURE_LOCATION = new ResourceLocation(ShadedCitadelsMod.MODID, "textures/entity/secretary.png");
+
     public SecretaryRenderer(EntityRendererProvider.Context context) {
-        super(context, new PlaceholderModel<>(context.bakeLayer(PlaceholderModel.LAYER_LOCATION)), 1.0F);
+        super(context, new SecretaryModel<>(context.bakeLayer(SecretaryModel.LAYER_LOCATION)), 0.0F);
     }
 
     @Override
     public void render(Secretary pEntity, float pEntityYaw, float pPartialTicks, PoseStack pMatrixStack, MultiBufferSource pBuffer, int pPackedLight) {
-        this.getModel().setColors(0.0F, 0.0F, 0.0F, 1.0F);
-        ModelPart part = this.getModel().part;
-        part.y -= 8;
-        part.yScale = 2;
+        float ticksExisted = pEntity.tickCount + pPartialTicks;
+        this.model.alpha = 1.0F;//0.95F + ((Mth.sin(ticksExisted * 0.1F) + 1.0F) * 0.5F) * 0.05F;
         super.render(pEntity, pEntityYaw, pPartialTicks, pMatrixStack, pBuffer, pPackedLight);
 
-        float ticksExisted = pEntity.tickCount + pPartialTicks;
         Vec3 a = pEntity.getEyePosition(pPartialTicks);
         Vec3 b = pEntity.getViewVector(pPartialTicks).scale(2).add(a);
         Vec3 d = pEntity.getTendrilEndLocation(true);
@@ -47,6 +48,12 @@ public class SecretaryRenderer extends MobRenderer<Secretary, PlaceholderModel<S
             float br = t1 * t1;
             renderLine(pMatrixStack, lineRenderer, position1.x(), position1.y(), position1.z(), position2.x(), position2.y(), position2.z(), br, br, 0.0F, 1.0F);
         }
+    }
+
+    @Nullable
+    @Override
+    protected RenderType getRenderType(Secretary pLivingEntity, boolean pBodyVisible, boolean pTranslucent, boolean pGlowing) {
+        return RenderType.entityTranslucentCull(this.getTextureLocation(pLivingEntity));
     }
 
     private static Vec3 bezierCurve(Vec3 a, Vec3 b, Vec3 c, Vec3 d, float t) {

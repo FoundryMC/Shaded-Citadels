@@ -1,9 +1,6 @@
 package birsy.shadedcitadels.core;
 
-import birsy.shadedcitadels.core.registry.ShadedCitadelsBiomeModifiers;
-import birsy.shadedcitadels.core.registry.ShadedCitadelsBlocks;
-import birsy.shadedcitadels.core.registry.ShadedCitadelsEntities;
-import birsy.shadedcitadels.core.registry.ShadedCitadelsItems;
+import birsy.shadedcitadels.core.registry.*;
 import com.mojang.logging.LogUtils;
 import net.minecraft.data.worldgen.features.CaveFeatures;
 import net.minecraft.data.worldgen.features.FeatureUtils;
@@ -36,6 +33,7 @@ public class ShadedCitadelsMod
         ShadedCitadelsBlocks.BLOCKS.register(modEventBus);
         ShadedCitadelsItems.ITEMS.register(modEventBus);
         ShadedCitadelsEntities.ENTITIES.register(modEventBus);
+        ShadedCitadelsParticles.PARTICLES.register(modEventBus);
         ShadedCitadelsBiomeModifiers.BIOME_MODIFIER_SERIALIZERS.register(modEventBus);
 
         MinecraftForge.EVENT_BUS.register(this);

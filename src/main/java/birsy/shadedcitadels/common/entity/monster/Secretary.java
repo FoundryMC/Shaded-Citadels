@@ -1,9 +1,11 @@
 package birsy.shadedcitadels.common.entity.monster;
 
 import birsy.shadedcitadels.core.ShadedCitadelsMod;
+import birsy.shadedcitadels.core.registry.ShadedCitadelsParticles;
 import com.mojang.serialization.Dynamic;
 import net.minecraft.ChatFormatting;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.NbtOps;
 import net.minecraft.network.chat.Component;
@@ -18,14 +20,19 @@ import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
+import net.minecraft.world.entity.ai.goal.FloatGoal;
 import net.minecraft.world.entity.monster.Monster;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.gameevent.DynamicGameEventListener;
 import net.minecraft.world.level.gameevent.EntityPositionSource;
 import net.minecraft.world.level.gameevent.GameEvent;
 import net.minecraft.world.level.gameevent.GameEventListener;
 import net.minecraft.world.level.gameevent.vibrations.VibrationListener;
+import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 import org.apache.commons.lang3.tuple.Pair;
 import org.jetbrains.annotations.Nullable;
 
@@ -55,6 +62,18 @@ public class Secretary extends Monster implements VibrationListener.VibrationLis
     boolean retractingRightTendril = true;
     private static final EntityDataAccessor<Float> TENDRIL_RIGHT_PROGRESS = SynchedEntityData.defineId(Secretary.class, EntityDataSerializers.FLOAT);
 
+    public static final EntityDataAccessor<Float> EXCITEMENT = SynchedEntityData.defineId(Secretary.class, EntityDataSerializers.FLOAT);
+
+
+    @OnlyIn(Dist.CLIENT)
+    public float[] prevRotations = new float[]{0, 0, 0, 0, 0, 0, 0, 0, 0};
+    @OnlyIn(Dist.CLIENT)
+    public float[] rotations = new float[]{0, 0, 0, 0, 0, 0, 0, 0, 0};
+    @OnlyIn(Dist.CLIENT)
+    public float[] targetRotations = new float[]{0, 0, 0, 0, 0, 0, 0, 0, 0};
+    @OnlyIn(Dist.CLIENT)
+    public float rotationSpeed = 0.05F;
+
     public Secretary(EntityType<? extends Monster> pEntityType, Level pLevel) {
         super(pEntityType, pLevel);
         this.setPersistenceRequired();
@@ -69,6 +88,7 @@ public class Secretary extends Monster implements VibrationListener.VibrationLis
         this.getEntityData().define(TENDRIL_LEFT_PROGRESS, 0.0F);
         this.getEntityData().define(TENDRIL_END_RIGHT, BlockPos.ZERO);
         this.getEntityData().define(TENDRIL_RIGHT_PROGRESS, 0.0F);
+        this.getEntityData().define(EXCITEMENT, 0.0F);
     }
 
     public void addAdditionalSaveData(CompoundTag pCompound) {
@@ -95,7 +115,7 @@ public class Secretary extends Monster implements VibrationListener.VibrationLis
     }
 
     protected void registerGoals() {
-        //this.goalSelector.addGoal(0, new FloatGoal(this));
+        this.goalSelector.addGoal(0, new FloatGoal(this));
         this.goalSelector.addGoal(3, new SecretaryAI.InvestigateGoal(this));
         this.goalSelector.addGoal(4, new SecretaryAI.LongWanderGoal(this));
         //this.goalSelector.addGoal(8, new LookAtPlayerGoal(this, Player.class, 8.0F));
@@ -128,12 +148,49 @@ public class Secretary extends Monster implements VibrationListener.VibrationLis
         }
     }
 
+    @OnlyIn(Dist.CLIENT)
+    public void updateRotations() {
 
+        float biasedExcitement = (float) Math.pow(this.entityData.get(EXCITEMENT), 0.25F);
+        this.rotationSpeed = 0.05F;//Mth.lerp(biasedExcitement, 0.02F, 0.2F);
+
+        for (int i = 0; i < this.rotations.length; i++) {
+            float rot = this.rotations[i];
+            float targetRot = this.targetRotations[i];
+            float velocity = rot - this.prevRotations[i];
+
+            this.prevRotations[i] = this.rotations[i];
+            rot += velocity * 0.99F;
+
+            if (rot < targetRot - rotationSpeed) {
+                this.rotations[i] = rot + rotationSpeed;
+            } else if (rot > targetRot + rotationSpeed) {
+                this.rotations[i] = rot - rotationSpeed;
+            }
+        }
+
+        if (level.random.nextInt(100) == 0) {
+            for (int i = 0; i < this.targetRotations.length; i++) {
+                if (level.random.nextInt(3) == 0) {
+                    this.targetRotations[i] = (level.random.nextInt(-45, 44) + level.random.nextFloat()) / 57.2957795F;
+                }
+            }
+        }
+    }
+
+    @OnlyIn(Dist.CLIENT)
+    public float getRotation(int index, float partialTick) {
+        return Mth.lerp(partialTick, this.prevRotations[index], this.rotations[index]);
+    }
 
     @Override
     public void tick() {
         super.tick();
         updateTendrilProgress();
+        updateRotations();
+
+        this.entityData.set(EXCITEMENT, Math.max(this.getEntityData().get(EXCITEMENT) - 0.001F, 0));
+
         if (level instanceof ServerLevel serverlevel) {
             this.dynamicGameEventListener.getListener().tick(serverlevel);
 
@@ -151,11 +208,22 @@ public class Secretary extends Monster implements VibrationListener.VibrationLis
            // ShadedCitadelsMod.LOGGER.info("" + count);
             switch (this.state) {
                 case WANDER -> component = Component.literal("Wandering").withStyle(ChatFormatting.GREEN);
+                case LISTEN -> component = Component.literal(count < 1 ? "Listening." : count < 2 ? "Listening.." : "Listening...").withStyle(ChatFormatting.BLUE);
                 case INVESTIGATE -> component = Component.literal(count < 1 ? "Investigating." : count < 2 ? "Investigating.." : "Investigating...").withStyle(ChatFormatting.YELLOW);
                 case SEARCH -> component = Component.literal(count < 1 ? "Searching." : count < 2 ? "Searching.." : "Searching...").withStyle(ChatFormatting.GOLD);
                 case ATTACK -> component = Component.literal("Attacking!").withStyle(ChatFormatting.DARK_RED);
             }
             this.setCustomName(component);
+        } else {
+            for (int i = 0; i < 8; i++) {
+                AABB boundingBox = this.getBoundingBox().inflate(-0.25, -0.05, -0.25);
+                double x = Mth.lerp(this.level.random.nextDouble(), boundingBox.minX, boundingBox.maxX);
+                double y = Mth.lerp(Math.min(this.level.random.nextDouble() + this.level.random.nextDouble(), 1.0), boundingBox.minY, boundingBox.maxY);
+                double z = Mth.lerp(this.level.random.nextDouble(), boundingBox.minZ, boundingBox.maxZ);
+
+                Vec3 speed = new Vec3(this.level.random.nextDouble(), this.level.random.nextDouble(), this.level.random.nextDouble()).scale(2).subtract(1, 1, 1).scale(0.01);
+                this.level.addParticle(ShadedCitadelsParticles.SCULK_SPECK.get(), x, y, z, speed.x, speed.y, speed.z);
+            }
         }
     }
 
@@ -196,6 +264,8 @@ public class Secretary extends Monster implements VibrationListener.VibrationLis
             ShadedCitadelsMod.LOGGER.info("Investigating " + pSourcePos);
         }
 
+        this.entityData.set(EXCITEMENT, 1.0F);
+
         this.entityData.set(TENDRIL_LEFT_PROGRESS, 0.0F);
         this.entityData.set(TENDRIL_RIGHT_PROGRESS, 0.0F);
         this.getEntityData().set(TENDRIL_END_LEFT, pSourcePos);
@@ -215,7 +285,12 @@ public class Secretary extends Monster implements VibrationListener.VibrationLis
         this.vibrationCooldown = 20;
     }
 
+    @Override
+    protected void playStepSound(BlockPos pPos, BlockState pState) {
+        //super.playStepSound(pPos, pState);
+    }
+
     protected enum InvestigationState {
-        WANDER, INVESTIGATE, SEARCH, ATTACK;
+        WANDER, LISTEN, INVESTIGATE, SEARCH, ATTACK;
     }
 }
